@@ -1,0 +1,44 @@
+﻿@using Teahub.Areas.Admin.Models
+@model IList<AdminMenu>
+
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " href="index.html">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+        @foreach (var item in Model.Where(m => m.ItemLevel == 1).OrderBy(n => n.ItemOrder))
+        {
+            var Pid = item.AdminMenuID;
+            var Smenu = Model.Where(p => p.ParentLevel == Pid).OrderBy(p => p.ItemOrder).ToList();
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#@item.ItemTarget" data-bs-toggle="collapse" href="#">
+                    <i class="@item.Icon"></i><span>@item.ItemName</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+            </li>
+            <ul id="@item.IdName" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                @foreach (var smn in Smenu)
+                {
+                    <li>
+                        <a href="/Admin/@smn.ControllerName/@smn.ActionName">
+                            <i class="bi bi-circle"></i><span>@smn.ItemName</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+
+        }
+
+        <li class="nav-heading">Pages</li>
+
+        
+
+    </ul>
+
+</aside><!-- End Sidebar-->

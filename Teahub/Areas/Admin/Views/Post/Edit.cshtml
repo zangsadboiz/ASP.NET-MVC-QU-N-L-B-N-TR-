@@ -1,0 +1,83 @@
+﻿@model Teahub.Models.Post;
+@using Teahub.Utilities;
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Xác nhận sửa bài viết</h2>
+    </div>
+
+    <div class="container shadow p-5">
+
+        <div class="row pb-2">
+            <h2>Sửa bài viết</h2>
+        </div>
+        <form asp-action="Edit" method="post">
+            <div class="form-row">
+               <div>
+                   <!-- nhớ là thêm 1 thẻ input của PostID để cho nó biết nó đang sửa bài viết nào-->
+                   <!-- nếu không thêm thì khi sửa nó sẽ thêm 1 bản ghi mới-->
+                    <input type="text" class="form-control mb-3" asp-for="PostID" type="hidden" />
+
+                    <div class="form-group col-md-12">
+                        <label asp-for="Title">Tiêu đề</label>
+                        <input type="text" class="form-control mb-3" asp-for="Title">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label asp-for="Abstract">Miêu tả ngắn</label>
+                    <input type="text" class="form-control mb-3" asp-for="Abstract">
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label class="control-label">Ảnh</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-success" type="button" onclick="openDialog()">Chọn ảnh</button>
+                        </div>
+                        <input type="text" class="form-control" asp-for="Images" id="file_input" aria-describedby="button-addon2">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label asp-for="Contents">Nội dung</label>
+                    <textarea asp-for="Contents" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group col-md-6 mt-3 mb-3">
+                    <label>
+                        @Html.CheckBox("IsActive", Model.IsActive)
+                        Hiển thị
+                    </label>
+                </div>
+
+                <div class="form-group d-none">
+                    <input asp-for="CreatedDate" class="form-control" value="@Functions.getCurrentDate()">
+                </div>
+
+                <div class="form-group d-none">
+                    <input asp-for="MenuID" class="form-control" value="@Model.MenuID"> @*menuid là khóa ngoại nên *@
+                </div>
+
+            </div>
+
+            <a class="btn btn-lg btn-warning p-2 mr-5" href="javascript:history.back()">
+                <i class="bi bi-arrow-left-circle"></i>Quay lại
+            </a>
+            <button type="submit" class="btn btn-lg btn-primary p-2">
+                <i class="bi bi-file-plus-fill"></i> Lưu lại
+            </button>
+
+        </form>
+
+    </div>
+
+
+</main>
+
+@{
+    var summerNote = new Teahub.Areas.Admin.Models.SummerNote("#Contents");
+    <partial name="_SummerNote" model="summerNote" />
+}

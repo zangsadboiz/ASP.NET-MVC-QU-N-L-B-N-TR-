@@ -1,0 +1,72 @@
+﻿@model Teahub.Models.Menu
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Xác nhận sửa menu</h2>
+    </div>
+    <div class="container shadow p-5">
+        <div class="row pb-2">
+            <h2>Sửa Menu</h2>
+        </div>
+        <form method="post" asp-action="Edit">
+            <div asp-validation-summary="All"></div>
+            <input asp-for="MenuID" type="hidden" />
+
+            <div class="form-group">
+                <label asp-for="MenuName">Tên Menu</label>
+                <input asp-for="MenuName" class="form-control" placeholder="Nhập tên menu" />
+                <span asp-validation-for="MenuName" class="text-danger"></span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Levels">Levels</label>
+                    <select asp-for="Levels" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="ParentID">ParentID</label>
+                    <input asp-for="ParentID" class="form-control" placeholder="Enter ParentID" />
+                    <span asp-validation-for="ParentID" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Link">Link</label>
+                    <input asp-for="Link" class="form-control" placeholder="Enter Link" />
+                    <span asp-validation-for="Link" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="MenuOrder">MenuOrder</label>
+                    <input asp-for="MenuOrder" class="form-control" placeholder="Enter MenuOrder" />
+                    <span asp-validation-for="MenuOrder" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Position">Position</label>
+                    <input asp-for="Position" class="form-control" placeholder="Enter Position" />
+                    <span asp-validation-for="Position" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>
+                        @Html.CheckBox("IsActive",false)
+                        Hiển thị
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Lưu</button>
+                <a asp-controller="Menu" asp-action="Index" class="btn btn-warning">Quay lại</a>
+            </div>
+        </form>
+    </div>
+</main>

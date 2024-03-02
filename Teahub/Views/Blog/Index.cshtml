@@ -1,0 +1,25 @@
+﻿@model IList<Teahub.Models.Post>
+@using Teahub.Utilities;
+<!-- Featured Article Start -->
+@foreach (var item in Model)
+{
+    string url = Functions.TitleSlugGeneration("list", item.Title, item.PostID);
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+                    <img class="img-fluid" src="@item.Images" alt="@item.Title">
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="section-title">
+                        <p class="fs-5 fw-medium fst-italic text-primary">@item.Title</p>
+                        <h1 class="display-6">@item.Abstract</h1>
+                    </div>
+
+                    <p class="mb-4">@item.Contents</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!-- Featured Article End -->

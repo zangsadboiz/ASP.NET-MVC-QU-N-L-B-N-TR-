@@ -1,0 +1,25 @@
+﻿@using Teahub.Models;
+@model IList<Product>
+<!-- Products Start -->
+<div class="container-fluid product py-5 my-5">
+    <div class="container py-5">
+        <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <p class="fs-5 fw-medium fst-italic text-primary">Sản phẩm của chúng tôi</p>
+            <h1 class="display-6">Trà ở đây còn ngọt hơn môi em</h1>
+        </div>
+        <div class="owl-carousel product-carousel wow fadeInUp" data-wow-delay="0.5s">
+            @foreach (var item in Model)
+            {
+                <a href="" class="d-block product-item rounded">
+                    <img src="@item.Images" alt="">
+                    <div class="bg-white shadow-sm text-center p-4 position-relative mt-n5 mx-4">
+                        <h4 class="text-primary">@item.ProductName</h4>
+                        <span class="text-body">@item.Abstract</span>
+                        <p>Ngày thêm: @item.CreatedDate.Value.ToString("dd/MM/yyyy")</p>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+<!-- Products End -->

@@ -1,0 +1,27 @@
+﻿@using Teahub.Models;
+@model IList<Review>
+<!-- Testimonial Start -->
+<div class="container-fluid testimonial py-5 my-5">
+    <div class="container py-5">
+        <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <p class="fs-5 fw-medium fst-italic text-white">Đánh giá</p>
+            <h1 class="display-6">Các bạn nói gì về chúng tôi...</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.5s">
+            @foreach (var item in Model)
+            {
+                <div class="testimonial-item p-4 p-lg-5">
+                    <p class="mb-4">@item.Contents</p>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img class="img-fluid flex-shrink-0" src="@item.Images" alt="">
+                        <div class="text-start ms-3">
+                            <h5>@item.Author</h5>
+                            <span class="text-primary">@item.Abstract</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->

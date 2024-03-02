@@ -1,0 +1,33 @@
+﻿
+@model Teahub.Models.Post;
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Xác nhận xóa bài viết</h2>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PostID">PostID</label>
+            <input type="text" class="form-control mb-3" asp-for="PostID" disabled>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Title">Tiêu đề</label>
+            <input type="text" class="form-control mb-3" asp-for="Title" disabled>
+        </div>
+    </div>
+    <!-- Begin Form-->
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="MenuID">
+        <a class="btn btn-lg btn-warning p-2 mr-5" href="javascript:history.back()">
+            <i class="bi bi-arrow-left-circle"></i>
+            Quay lại
+        </a>
+        <button type="submit" class="btn btn-danger p-2">
+            <i class="bi bi-trash-fill"></i>
+            Xóa bài viết
+        </button>
+    </form>
+    <!--End Form-->
+</main>
